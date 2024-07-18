@@ -1,38 +1,18 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { useGLTF, useAnimations } from '@react-three/drei';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { motion } from 'framer-motion';
 import { LaptopScroll } from '@/components/laptop-scroll';
 import { FlipWords } from '@/components/ui/flip-words';
 import { ProjectsParallax } from '@/components/ui/projects-parallax';
 import { projects } from '@/lib/data/projects';
-
-function Model({ modelPath }: { modelPath: string }) {
-	const { scene, animations } = useGLTF(modelPath);
-	const ref = useRef();
-	const { actions } = useAnimations(animations, ref);
-
-	useEffect(() => {
-		actions['FLY']?.play();
-	}, [actions]);
-
-	return (
-		<primitive
-			ref={ref}
-			object={scene}
-			scale={[2, 2, 2]}
-			position={[0, -30, -30]}
-			rotation={[0, Math.PI / 6, Math.PI/ 6]}
-		/>
-	);
-}
+import { Model } from '@/components/model';
 
 export default function Home() {
-	const modelPath = '/3d/spaceship-cb2.glb';
+	const spaceship = '/3d/spaceship-cb2.glb';
+	const subtitle = '/3d/subtitle.glb';
 
 	return (
 		<div className="container">
@@ -91,7 +71,18 @@ export default function Home() {
 							<ambientLight intensity={50} />
 							<directionalLight position={[10, 10, 10]} intensity={20} />
 							<pointLight position={[-10, -10, -10]} intensity={20} />
-							<Model modelPath={modelPath} />
+							<Model
+								modelPath={spaceship}
+								position={[0, -30, -30]}
+								rotation={[0, Math.PI / 6, Math.PI / 6]}
+								scale={[2, 2, 2]}
+							/>
+							<Model
+								modelPath={subtitle}
+								position={[0, -120, 10]}
+								rotation={[0, 0, 0]}
+								scale={[20, 20, 20]}
+							/>
 						</Suspense>
 					</Canvas>
 				</div>
@@ -100,7 +91,7 @@ export default function Home() {
 				<LaptopScroll />
 			</div>
 			<div className="container pt-5">
-			<ProjectsParallax projects={projects} />
+				<ProjectsParallax projects={projects} />
 			</div>
 		</div>
 	);
