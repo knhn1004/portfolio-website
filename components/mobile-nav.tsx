@@ -38,7 +38,7 @@ export default function MobileNav() {
 		e: React.MouseEvent<HTMLButtonElement>,
 		link: string
 	) => {
-		if (!link.startsWith('/')) {
+		if (!link.startsWith('/#')) {
 			redirect(link);
 		}
 		e.preventDefault();
