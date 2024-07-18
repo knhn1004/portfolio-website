@@ -13,6 +13,7 @@ import { Meteors } from '@/components/ui/meteors';
 import { ProjectCards } from '@/components/ui/project-cards';
 import { HonorsSlider } from '@/components/ui/honors-slider';
 import { honors } from '@/lib/data/honors';
+import { ContactForm } from '@/components/contact-form';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
@@ -104,6 +105,12 @@ export default function Home() {
 					Honors
 				</h2>
 				<HonorsSlider items={honors} />
+			</div>
+			<div id="contact" className="container pt-5">
+				<h2 className="text-2xl md:text-[4rem] font-bold text-center my-4">
+					Drop Your Question
+				</h2>
+				<ContactForm />
 			</div>
 		</div>
 	);
