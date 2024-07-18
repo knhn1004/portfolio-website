@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu as MenuIcon, Github, Linkedin } from 'lucide-react';
+import Link from 'next/link';
 
 const mobileItems = [
 	'OC',
@@ -30,6 +31,7 @@ export default function MobileNav() {
 				<div className="flex flex-col items-start p-4">
 					{mobileItems.map((item, index) => (
 						<Button
+							asChild
 							key={index}
 							variant="link"
 							className="w-full text-left"
@@ -37,15 +39,27 @@ export default function MobileNav() {
 								setOpen(false);
 							}}
 						>
-							{item}
+							<Link href="#">{item}</Link>
 						</Button>
 					))}
 					<div className="flex gap-2 mt-4">
-						<Button className="w-full" variant="link">
-							<Github size={20} />
+						<Button className="w-full" variant="link" asChild>
+							<a
+								href="https://github.com/knhn1004"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Github size={20} />
+							</a>
 						</Button>
-						<Button className="w-full" variant="link">
-							<Linkedin size={20} />
+						<Button className="w-full" variant="link" asChild>
+							<a
+								href="https://www.linkedin.com/in/chiahongchou/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Linkedin size={20} />
+							</a>
 						</Button>
 					</div>
 				</div>
