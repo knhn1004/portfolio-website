@@ -14,22 +14,22 @@ function Model({ modelPath }: { modelPath: string }) {
 	const { actions } = useAnimations(animations, ref);
 
 	useEffect(() => {
-		actions['Animation']?.play();
+		actions['FLY']?.play();
 	}, [actions]);
-
 
 	return (
 		<primitive
 			ref={ref}
 			object={scene}
-			scale={[20, 20, 20]}
-			position={[0, 0, -50]}
+			scale={[2, 2, 2]}
+			position={[0, -30, -30]}
+			rotation={[0, Math.PI/6, 0]}
 		/>
 	);
 }
 
 export default function Home() {
-	const modelPath = '/3d/spaceship.glb';
+	const modelPath = '/3d/spaceship-cb2.glb';
 
 	return (
 		<div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
@@ -61,7 +61,7 @@ export default function Home() {
 					className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
 				>
 					Oliver Chou
-					<br/>
+					<br />
 					<Highlight className="text-black dark:text-white">
 						Software Engineer
 					</Highlight>
@@ -71,7 +71,7 @@ export default function Home() {
 			<Canvas
 				gl={{ preserveDrawingBuffer: true }}
 				style={{ width: '100vw', height: '100vh' }}
-				camera={{ position: [0, 2, 40], fov: 45 }}
+				camera={{ position: [0, 40, 20] }}
 			>
 				<Suspense fallback={null}>
 					<ambientLight intensity={30} />

@@ -4,7 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu as MenuIcon } from 'lucide-react';
 
-const mobileItems = ['A', 'B', 'C'];
+const mobileItems = ['OC', 'About', 'Experiences', 'Projects', 'Publications','Awards', 'Contact'];
 
 export default function MobileNav() {
 	const [open, setOpen] = useState(false);

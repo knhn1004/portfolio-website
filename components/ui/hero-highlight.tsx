@@ -1,4 +1,3 @@
-'use client';
 import { cn } from '@/lib/utils';
 import { useMotionValue, motion, useMotionTemplate } from 'framer-motion';
 import React from 'react';
@@ -29,7 +28,7 @@ export const HeroHighlight = ({
 	return (
 		<div
 			className={cn(
-				'relative h-[40rem] flex items-center bg-transparent dark:bg-black justify-center w-full group',
+				'relative h-[40rem] flex items-center bg-transparent justify-center w-full group',
 				containerClassName
 			)}
 			onMouseMove={handleMouseMove}
@@ -78,6 +77,9 @@ export const Highlight = ({
 				duration: 2,
 				ease: 'linear',
 				delay: 0.5,
+				repeat: Infinity, // Repeat the animation infinitely
+				repeatType: 'reverse', // Alternate between start and end states
+				repeatDelay: 0.5, // Delay between repeats
 			}}
 			style={{
 				backgroundRepeat: 'no-repeat',
