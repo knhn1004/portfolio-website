@@ -9,6 +9,7 @@ import { FlipWords } from '@/components/ui/flip-words';
 import { ProjectsParallax } from '@/components/ui/projects-parallax';
 import { projects } from '@/lib/data/projects';
 import { Model } from '@/components/model';
+import { Meteors } from '@/components/ui/meteors';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
@@ -27,6 +28,7 @@ export default function Home() {
 						className="w-full h-full"
 						particleColor="#FFFFFF"
 					/>
+					<Meteors number={50} />
 				</div>
 				<div className="flex-1 md:flex-none md:w-1/3 flex flex-col items-center justify-center z-10">
 					<motion.h1
