@@ -4,14 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Menu as MenuIcon, Github, Linkedin } from 'lucide-react';
 import { redirect } from 'next/navigation';
-
-const mobileItems = [
-	{ title: 'OC', link: '/' },
-	{ title: 'Projects', link: '/#projects' },
-	{ title: 'Publications', link: '/#publications' },
-	{ title: 'Honors', link: '/#honors' },
-	{ title: 'Contact', link: '/#contact' },
-];
+import { navLinks } from '@/lib/data/nav-links';
 
 export default function MobileNav() {
 	const [open, setOpen] = useState(false);
@@ -56,7 +49,7 @@ export default function MobileNav() {
 
 			<SheetContent side="left" className="w-64 bg-gray-800">
 				<div className="flex flex-col items-start p-4">
-					{mobileItems.map(({ link, title }, index) => (
+					{navLinks.map(({ link, title }, index) => (
 						<Button
 							asChild
 							key={index}
