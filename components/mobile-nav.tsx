@@ -6,13 +6,12 @@ import { Menu as MenuIcon, Github, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
 const mobileItems = [
-	'OC',
-	'About',
-	'Experiences',
-	'Projects',
-	'Publications',
-	'Awards',
-	'Contact',
+	{ title: 'OC', link: '/' },
+	{ title: 'Projects', link: '/#projects' },
+	{ title: 'Publications', link: '/#publications' },
+	{ title: 'Experiences', link: '/#experiences' },
+	{ title: 'Honors', link: '/#honors' },
+	{ title: 'Contact', link: '/#contact' },
 ];
 
 export default function MobileNav() {
@@ -29,7 +28,7 @@ export default function MobileNav() {
 
 			<SheetContent side="left" className="w-64 bg-gray-800">
 				<div className="flex flex-col items-start p-4">
-					{mobileItems.map((item, index) => (
+					{mobileItems.map(({ link, title }, index) => (
 						<Button
 							asChild
 							key={index}
@@ -39,7 +38,7 @@ export default function MobileNav() {
 								setOpen(false);
 							}}
 						>
-							<Link href="#">{item}</Link>
+							<Link href={link}>{title}</Link>
 						</Button>
 					))}
 					<div className="flex gap-2 mt-4">

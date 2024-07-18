@@ -11,6 +11,8 @@ import { projects } from '@/lib/data/projects';
 import { Model } from '@/components/model';
 import { Meteors } from '@/components/ui/meteors';
 import { ProjectCards } from '@/components/ui/project-cards';
+import { HonorsSlider } from '@/components/ui/honors-slider';
+import { honors } from '@/lib/data/honors';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
@@ -45,7 +47,7 @@ export default function Home() {
 							duration: 0.5,
 							ease: [0.4, 0.0, 0.2, 1],
 						}}
-						className="text-4xl px-4 lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+						className="text-4xl px-4 lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
 					>
 						Oliver Chou
 						<br />
@@ -90,14 +92,18 @@ export default function Home() {
 					</Canvas>
 				</div>
 			</div>
-			<div className="container pt-5">
+			<div id="projects" className="container pt-5">
 				<ProjectsParallax projects={projects} />
-			</div>
-			<div className="container pt-5">
 				<ProjectCards items={projects} />
 			</div>
-			<div className="container pt-5">
+			<div id="publications" className="container pt-5">
 				<PublicationsHero />
+			</div>
+			<div id="honors" className="container pt-5">
+				<h2 className="text-2xl md:text-[4rem] font-bold text-center">
+					Honors
+				</h2>
+				<HonorsSlider items={honors} />
 			</div>
 		</div>
 	);

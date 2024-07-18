@@ -12,7 +12,7 @@ export function PublicationsHero() {
 						<h1 className="text-xl font-semibold text-white">
 							Research in Applied Computer Science and Cyber Security
 							<br />
-							<span className="text-2xl md:text-[6rem] font-bold mt-1 leading-none">
+							<span className="text-2xl md:text-[4rem] font-bold mt-1 leading-none">
 								Publications
 							</span>
 						</h1>

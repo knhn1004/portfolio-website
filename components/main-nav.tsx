@@ -3,22 +3,21 @@ import { Button } from './ui/button';
 import { Github, Linkedin } from 'lucide-react';
 
 const mainNavItems = [
-	'OC',
-	'About',
-	'Experiences',
-	'Projects',
-	'Publications',
-	'Awards',
-	'Contact',
+	{ title: 'OC', link: '/' },
+	{ title: 'Projects', link: '/#projects' },
+	{ title: 'Publications', link: '/#publications' },
+	{ title: 'Experiences', link: '/#experiences' },
+	{ title: 'Honors', link: '/#honors' },
+	{ title: 'Contact', link: '/#contact' },
 ];
 
 export default function MainNav() {
 	return (
 		<div className="mr-4 hidden gap-2 md:flex items-center justify-between w-full">
 			<div className="flex gap-2">
-				{mainNavItems.map((item, index) => (
+				{mainNavItems.map(({ title, link }, index) => (
 					<Button key={index} variant="link" asChild>
-						<Link href="#">{item}</Link>
+						<Link href={link}>{title}</Link>
 					</Button>
 				))}
 			</div>

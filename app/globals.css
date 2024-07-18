@@ -4,98 +4,101 @@
 
 /* Add the custom font face */
 @font-face {
-  font-family: 'Virgil';
-  src: url('/fonts/Virgil.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'Virgil';
+	src: url('/fonts/Virgil.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* Apply the custom font to the whole site */
 @layer base {
-  :root {
-    --background: #000000; /* Dark Background */
-    --foreground: #FFFFFF; /* White for contrast */
-    --card: #000000; /* Dark Background */
-    --card-foreground: #FFFFFF; /* White for contrast */
-    --popover: #1ABC9C; /* Turquoise */
-    --popover-foreground: #FFFFFF; /* White for contrast */
-    --primary: #00ADEF; /* Blue */
-    --primary-foreground: #FFFFFF; /* White */
-    --secondary: #9B59B6; /* Purple */
-    --secondary-foreground: #FFFFFF; /* White */
-    --muted: #1ABC9C; /* Turquoise */
-    --muted-foreground: #FFFFFF; /* White */
-    --accent: #9B59B6; /* Purple */
-    --accent-foreground: #FFFFFF; /* White */
-    --destructive: #E91E63; /* Pink */
-    --destructive-foreground: #FFFFFF; /* White */
-    --border: #00ADEF; /* Blue */
-    --input: #00ADEF; /* Blue */
-    --ring: #E91E63; /* Pink */
-    --radius: 0.5rem;
-    --chart-1: #00ADEF; /* Blue */
-    --chart-2: #9B59B6; /* Purple */
-    --chart-3: #E91E63; /* Pink */
-    --chart-4: #1ABC9C; /* Turquoise */
-    --chart-5: #1ABC9C; /* Turquoise */
-  }
+	:root {
+		--background: #000000; /* Dark Background */
+		--foreground: #ffffff; /* White for contrast */
+		--card: #000000; /* Dark Background */
+		--card-foreground: #ffffff; /* White for contrast */
+		--popover: #1abc9c; /* Turquoise */
+		--popover-foreground: #ffffff; /* White for contrast */
+		--primary: #00adef; /* Blue */
+		--primary-foreground: #ffffff; /* White */
+		--secondary: #9b59b6; /* Purple */
+		--secondary-foreground: #ffffff; /* White */
+		--muted: #1abc9c; /* Turquoise */
+		--muted-foreground: #ffffff; /* White */
+		--accent: #9b59b6; /* Purple */
+		--accent-foreground: #ffffff; /* White */
+		--destructive: #e91e63; /* Pink */
+		--destructive-foreground: #ffffff; /* White */
+		--border: #00adef; /* Blue */
+		--input: #00adef; /* Blue */
+		--ring: #e91e63; /* Pink */
+		--radius: 0.5rem;
+		--chart-1: #00adef; /* Blue */
+		--chart-2: #9b59b6; /* Purple */
+		--chart-3: #e91e63; /* Pink */
+		--chart-4: #1abc9c; /* Turquoise */
+		--chart-5: #1abc9c; /* Turquoise */
+	}
 
-  .dark {
-    --background: #000000; /* Dark Background */
-    --foreground: #FFFFFF; /* White for contrast */
-    --card: #000000; /* Dark Background */
-    --card-foreground: #FFFFFF; /* White for contrast */
-    --popover: #1ABC9C; /* Turquoise */
-    --popover-foreground: #FFFFFF; /* White for contrast */
-    --primary: #00ADEF; /* Blue */
-    --primary-foreground: #FFFFFF; /* White */
-    --secondary: #9B59B6; /* Purple */
-    --secondary-foreground: #FFFFFF; /* White */
-    --muted: #1ABC9C; /* Turquoise */
-    --muted-foreground: #FFFFFF; /* White */
-    --accent: #9B59B6; /* Purple */
-    --accent-foreground: #FFFFFF; /* White */
-    --destructive: #E91E63; /* Pink */
-    --destructive-foreground: #FFFFFF; /* White */
-    --border: #00ADEF; /* Blue */
-    --input: #00ADEF; /* Blue */
-    --ring: #E91E63; /* Pink */
-    --chart-1: #00ADEF; /* Blue */
-    --chart-2: #9B59B6; /* Purple */
-    --chart-3: #E91E63; /* Pink */
-    --chart-4: #1ABC9C; /* Turquoise */
-    --chart-5: #1ABC9C; /* Turquoise */
-  }
+	.dark {
+		--background: #000000; /* Dark Background */
+		--foreground: #ffffff; /* White for contrast */
+		--card: #000000; /* Dark Background */
+		--card-foreground: #ffffff; /* White for contrast */
+		--popover: #1abc9c; /* Turquoise */
+		--popover-foreground: #ffffff; /* White for contrast */
+		--primary: #00adef; /* Blue */
+		--primary-foreground: #ffffff; /* White */
+		--secondary: #9b59b6; /* Purple */
+		--secondary-foreground: #ffffff; /* White */
+		--muted: #1abc9c; /* Turquoise */
+		--muted-foreground: #ffffff; /* White */
+		--accent: #9b59b6; /* Purple */
+		--accent-foreground: #ffffff; /* White */
+		--destructive: #e91e63; /* Pink */
+		--destructive-foreground: #ffffff; /* White */
+		--border: #00adef; /* Blue */
+		--input: #00adef; /* Blue */
+		--ring: #e91e63; /* Pink */
+		--chart-1: #00adef; /* Blue */
+		--chart-2: #9b59b6; /* Purple */
+		--chart-3: #e91e63; /* Pink */
+		--chart-4: #1abc9c; /* Turquoise */
+		--chart-5: #1abc9c; /* Turquoise */
+	}
 
-  * {
-    @apply border-border;
-    font-family: 'Virgil', sans-serif;
-  }
+	* {
+		@apply border-border;
+		font-family: 'Virgil', sans-serif;
+	}
 
-  body {
-    @apply bg-background text-foreground;
-  }
+	body {
+		@apply bg-background text-foreground;
+	}
 
-  .bg-hero {
-    background-image: url('/hero-background.png');
-  }
+	.bg-hero {
+		background-image: url('/hero-background.png');
+	}
 }
 
 html {
-  @apply antialiased;
-  background-color: var(--background);
-  font-family: 'Virgil', sans-serif !important;
+	@apply antialiased;
+	background-color: var(--background);
+	font-family: 'Virgil', sans-serif !important;
 }
 
 .text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-html, body, #__next {
-  height: 100%;
-  margin: 0;
+html,
+body,
+#__next {
+	height: 100%;
+	margin: 0;
+	scroll-behavior: smooth;
 }
 
 canvas {
-  display: block;
+	display: block;
 }
