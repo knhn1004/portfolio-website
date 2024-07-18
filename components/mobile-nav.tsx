@@ -1,10 +1,18 @@
-"use client";
+'use client';
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon, Github, Linkedin } from 'lucide-react';
 
-const mobileItems = ['OC', 'About', 'Experiences', 'Projects', 'Publications','Awards', 'Contact'];
+const mobileItems = [
+	'OC',
+	'About',
+	'Experiences',
+	'Projects',
+	'Publications',
+	'Awards',
+	'Contact',
+];
 
 export default function MobileNav() {
 	const [open, setOpen] = useState(false);
@@ -18,12 +26,13 @@ export default function MobileNav() {
 				</Button>
 			</SheetTrigger>
 
-			<SheetContent side="left">
-				<div className="flex flex-col items-start">
+			<SheetContent side="left" className="w-64 bg-gray-800">
+				<div className="flex flex-col items-start p-4">
 					{mobileItems.map((item, index) => (
 						<Button
 							key={index}
 							variant="link"
+							className="w-full text-left"
 							onClick={() => {
 								setOpen(false);
 							}}
@@ -31,6 +40,14 @@ export default function MobileNav() {
 							{item}
 						</Button>
 					))}
+					<div className="flex gap-2 mt-4">
+						<Button className="w-full" variant="link">
+							<Github size={20} />
+						</Button>
+						<Button className="w-full" variant="link">
+							<Linkedin size={20} />
+						</Button>
+					</div>
 				</div>
 			</SheetContent>
 		</Sheet>
