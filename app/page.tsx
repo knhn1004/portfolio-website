@@ -1,58 +1,52 @@
 'use client';
 
-import {useRef} from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { OrbitControls } from '@react-three/drei';
-import { motion } from 'framer-motion';
+import { useGLTF, useAnimations } from '@react-three/drei';
+import { WavyBackground } from '@/components/ui/wavy-background';
 
 function Model({ modelPath }: { modelPath: string }) {
-	const { scene } = useGLTF(modelPath);
+	const { scene, animations } = useGLTF(modelPath);
 	const ref = useRef();
+	const { actions } = useAnimations(animations, ref);
 
-	useFrame(() => {
-		if (ref.current) {
-			(ref.current as any).rotation.y += 0.01; // Adjust rotation speed as needed
-		}
-	});
-	return <primitive ref={ref} object={scene} rotation={[0.1, -0.2, 0]} />;
+	useEffect(() => {
+		console.log(Object.keys(actions));
+		actions['Animation']?.play();
+	}, [actions]);
+
+	//useFrame(() => {
+	//	ref.current.rotation.y += 0.01; // Rotate the model for animation
+	//});
+
+	return (
+		<primitive
+			ref={ref}
+			object={scene}
+			scale={[8, 8, 8]}
+			position={[0, 0, -50]}
+		/>
+	);
 }
 
 export default function Home() {
-	const modelPath = '/computer.glb';
+	const modelPath = '/3d/spaceship.glb';
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center p-24">
-			<div className="relative flex flex-col items-center">
-				<motion.h1
-					className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--chart-1)] via-[var(--chart-2)] via-[var(--chart-3)] via-[var(--chart-4)] to-[var(--chart-5)] pb-5"
-					initial={{ opacity: 0, y: -50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1 }}
-				>
-					Oliver Chou | SWE
-				</motion.h1>
-
-				<Canvas
-					gl={{ preserveDrawingBuffer: true }}
-					style={{ width: '400px', height: '400px' }}
-					camera={{ position: [0, 0, 8] }}
-				>
-					<OrbitControls
-						// autoRotate
-						maxPolarAngle={Math.PI / 2}
-						minPolarAngle={Math.PI / 2}
-						enableZoom={false}
-						enablePan={false}
-					/>
-					<ambientLight intensity={1} />
-					<directionalLight position={[0, 0, 8]} />
-					<Suspense fallback={null}>
-						<Model modelPath={modelPath} />
-					</Suspense>
-				</Canvas>
-			</div>
-		</main>
+		<WavyBackground className="max-w-4xl mx-auto pb-40">
+			<Canvas
+				gl={{ preserveDrawingBuffer: true }}
+				style={{ width: '600px', height: '300px' }}
+				camera={{ position: [0, 2, 40], fov: 45 }}
+			>
+				<Suspense fallback={null}>
+					<ambientLight intensity={30} />
+					<directionalLight position={[10, 10, 10]} intensity={30} />
+					<pointLight position={[-10, -10, -10]} intensity={30} />
+					<Model modelPath={modelPath} />
+				</Suspense>
+			</Canvas>
+		</WavyBackground>
 	);
 }

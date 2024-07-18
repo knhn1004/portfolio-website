@@ -20,38 +20,38 @@ const config = {
 		},
 		extend: {
 			colors: {
-				border: 'var(--border)',
-				input: 'var(--input)',
-				ring: 'var(--ring)',
-				background: 'var(--background)',
-				foreground: 'var(--foreground)',
+				border: '#00ADEF', // Blue
+				input: '#00ADEF', // Blue
+				ring: '#E91E63', // Pink
+				background: '#000000', // Dark Background
+				foreground: '#FFFFFF', // White for contrast
 				primary: {
-					DEFAULT: 'var(--primary)',
-					foreground: 'var(--primary-foreground)',
+					DEFAULT: '#00ADEF', // Blue
+					foreground: '#FFFFFF', // White
 				},
 				secondary: {
-					DEFAULT: 'var(--secondary)',
-					foreground: 'var(--secondary-foreground)',
+					DEFAULT: '#9B59B6', // Purple
+					foreground: '#FFFFFF', // White
 				},
 				destructive: {
-					DEFAULT: 'var(--destructive)',
-					foreground: 'var(--destructive-foreground)',
+					DEFAULT: '#E91E63', // Pink
+					foreground: '#FFFFFF', // White
 				},
 				muted: {
-					DEFAULT: 'var(--muted)',
-					foreground: 'var(--muted-foreground)',
+					DEFAULT: '#1ABC9C', // Turquoise
+					foreground: '#FFFFFF', // White
 				},
 				accent: {
-					DEFAULT: 'var(--accent)',
-					foreground: 'var(--accent-foreground)',
+					DEFAULT: '#9B59B6', // Purple
+					foreground: '#FFFFFF', // White
 				},
 				popover: {
-					DEFAULT: 'var(--popover)',
-					foreground: 'var(--popover-foreground)',
+					DEFAULT: '#1ABC9C', // Turquoise
+					foreground: '#FFFFFF', // White
 				},
 				card: {
-					DEFAULT: 'var(--card)',
-					foreground: 'var(--card-foreground)',
+					DEFAULT: '#000000', // Dark Background
+					foreground: '#FFFFFF', // White
 				},
 			},
 			borderRadius: {
@@ -61,7 +61,7 @@ const config = {
 			},
 			backgroundImage: {
 				'text-gradient':
-					'linear-gradient(90deg, #ff0000, #00ff00, #ff00ff, #00ffff, #ff6600)',
+					'linear-gradient(90deg, #00ADEF, #9B59B6, #E91E63, #1ABC9C)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -78,7 +78,7 @@ const config = {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			fontFamily: {
-				sans: ['var(--font-sans)', ...fontFamily.sans],
+				sans: ["'Virgil'", ...fontFamily.sans],
 			},
 		},
 	},

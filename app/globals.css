@@ -2,33 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add the custom font face */
+@font-face {
+  font-family: 'Virgil';
+  src: url('/fonts/Virgil.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply the custom font to the whole site */
 @layer base {
   :root {
-    --background: #FFF1DB; /* Updated background color */
-    --foreground: #1A1A1A; /* Black */
-    --card: #A3BE8C; /* Light Green */
-    --card-foreground: #1A1A1A; /* Black */
-    --popover: #A3BE8C; /* Light Green */
-    --popover-foreground: #1A1A1A; /* Black */
-    --primary: #EC1C24; /* Red */
-    --primary-foreground: #F7AFA3; /* Peach */
-    --secondary: #8AC441; /* Green */
-    --secondary-foreground: #1A1A1A; /* Black */
-    --muted: #8AC441; /* Green */
-    --muted-foreground: #5E8D87; /* Dark Green */
-    --accent: #8AC441; /* Green */
-    --accent-foreground: #1A1A1A; /* Black */
-    --destructive: #EC1C24; /* Red */
-    --destructive-foreground: #F7AFA3; /* Peach */
-    --border: #5E8D87; /* Dark Green */
-    --input: #5E8D87; /* Dark Green */
-    --ring: #EC1C24; /* Red */
+    --background: #FFF1DB; /* Cream */
+    --foreground: #1E4E5F; /* Dark Teal */
+    --card: #FFF1DB; /* Cream */
+    --card-foreground: #1E4E5F; /* Dark Teal */
+    --popover: #EED5B7; /* Dark Cream */
+    --popover-foreground: #1E4E5F; /* Dark Teal */
+    --primary: #8B5E3C; /* Dark Brown */
+    --primary-foreground: #FFF1DB; /* Cream */
+    --secondary: #A3D8F4; /* Light Blue */
+    --secondary-foreground: #8B5E3C; /* Dark Brown */
+    --muted: #C6A589; /* Light Brown */
+    --muted-foreground: #8B5E3C; /* Dark Brown */
+    --accent: #E79198; /* Pink */
+    --accent-foreground: #8B5E3C; /* Dark Brown */
+    --destructive: #B95866; /* Dark Pink */
+    --destructive-foreground: #8B5E3C; /* Dark Brown */
+    --border: #8B5E3C; /* Dark Brown */
+    --input: #8B5E3C; /* Dark Brown */
+    --ring: #E79198; /* Pink */
     --radius: 0.5rem;
-    --chart-1: #EC1C24; /* Red */
-    --chart-2: #8AC441; /* Green */
-    --chart-3: #F7AFA3; /* Peach */
-    --chart-4: #A3BE8C; /* Light Green */
-    --chart-5: #5E8D87; /* Dark Green */
+    --chart-1: #8B5E3C; /* Dark Brown */
+    --chart-2: #A3D8F4; /* Light Blue */
+    --chart-3: #E79198; /* Pink */
+    --chart-4: #B95866; /* Dark Pink */
+    --chart-5: #C6A589; /* Light Brown */
   }
 
   .dark {
@@ -57,18 +66,27 @@
     --chart-4: #A3BE8C; /* Light Green */
     --chart-5: #5E8D87; /* Dark Green */
   }
-}
 
-@layer base {
   * {
     @apply border-border;
+    font-family: 'Virgil', sans-serif;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .bg-hero {
+    background-image: url('/hero-background.png');
   }
 }
 
 html {
   @apply antialiased;
   background-color: var(--background);
+  font-family: 'Virgil', sans-serif !important;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
