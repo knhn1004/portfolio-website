@@ -90,3 +90,12 @@ html {
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+}
