@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    --background: #FFF1DB; /* Peach */
+    --background: #FFF1DB; /* Updated background color */
     --foreground: #1A1A1A; /* Black */
     --card: #A3BE8C; /* Light Green */
     --card-foreground: #1A1A1A; /* Black */
     --popover: #A3BE8C; /* Light Green */
     --popover-foreground: #1A1A1A; /* Black */
     --primary: #EC1C24; /* Red */
-    --primary-foreground: #FFF1DB; /* Peach */
+    --primary-foreground: #F7AFA3; /* Peach */
     --secondary: #8AC441; /* Green */
     --secondary-foreground: #1A1A1A; /* Black */
     --muted: #8AC441; /* Green */
@@ -19,38 +19,43 @@
     --accent: #8AC441; /* Green */
     --accent-foreground: #1A1A1A; /* Black */
     --destructive: #EC1C24; /* Red */
-    --destructive-foreground: #FFF1DB; /* Peach */
+    --destructive-foreground: #F7AFA3; /* Peach */
     --border: #5E8D87; /* Dark Green */
     --input: #5E8D87; /* Dark Green */
     --ring: #EC1C24; /* Red */
     --radius: 0.5rem;
     --chart-1: #EC1C24; /* Red */
     --chart-2: #8AC441; /* Green */
-    --chart-3: #FFF1DB; /* Peach */
+    --chart-3: #F7AFA3; /* Peach */
     --chart-4: #A3BE8C; /* Light Green */
     --chart-5: #5E8D87; /* Dark Green */
   }
 
   .dark {
     --background: #1A1A1A; /* Black */
-    --foreground: #FFF1DB; /* Peach */
+    --foreground: #F7AFA3; /* Peach */
     --card: #1A1A1A; /* Black */
-    --card-foreground: #FFF1DB; /* Peach */
+    --card-foreground: #F7AFA3; /* Peach */
     --popover: #1A1A1A; /* Black */
-    --popover-foreground: #FFF1DB; /* Peach */
-    --primary: #FFF1DB; /* Peach */
+    --popover-foreground: #F7AFA3; /* Peach */
+    --primary: #F7AFA3; /* Peach */
     --primary-foreground: #1A1A1A; /* Black */
     --secondary: #5E8D87; /* Dark Green */
-    --secondary-foreground: #FFF1DB; /* Peach */
+    --secondary-foreground: #F7AFA3; /* Peach */
     --muted: #5E8D87; /* Dark Green */
     --muted-foreground: #8AC441; /* Green */
     --accent: #5E8D87; /* Dark Green */
-    --accent-foreground: #FFF1DB; /* Peach */
+    --accent-foreground: #F7AFA3; /* Peach */
     --destructive: #EC1C24; /* Red */
-    --destructive-foreground: #FFF1DB; /* Peach */
+    --destructive-foreground: #F7AFA3; /* Peach */
     --border: #5E8D87; /* Dark Green */
     --input: #5E8D87; /* Dark Green */
-    --ring: #FFF1DB; /* Peach */
+    --ring: #F7AFA3; /* Peach */
+    --chart-1: #EC1C24; /* Red */
+    --chart-2: #8AC441; /* Green */
+    --chart-3: #F7AFA3; /* Peach */
+    --chart-4: #A3BE8C; /* Light Green */
+    --chart-5: #5E8D87; /* Dark Green */
   }
 }
 

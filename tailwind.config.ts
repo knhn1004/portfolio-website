@@ -1,4 +1,3 @@
-// tailwind.config.js
 import type { Config } from 'tailwindcss';
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
@@ -21,44 +20,38 @@ const config = {
 		},
 		extend: {
 			colors: {
-				red: '#EC1C24',
-				green: '#8AC441',
-				peach: '#FFF1DB',
-				'light-green': '#A3BE8C',
-				'dark-green': '#5E8D87',
-				black: '#1A1A1A',
-				border: '#5E8D87', // Dark Green
-				input: '#5E8D87', // Dark Green
-				ring: '#EC1C24', // Red
-				background: '#FFF1DB', // Peach
-				foreground: '#1A1A1A', // Black
+				border: 'var(--border)',
+				input: 'var(--input)',
+				ring: 'var(--ring)',
+				background: 'var(--background)',
+				foreground: 'var(--foreground)',
 				primary: {
-					DEFAULT: '#EC1C24', // Red
-					foreground: '#FFF1DB', // Peach
+					DEFAULT: 'var(--primary)',
+					foreground: 'var(--primary-foreground)',
 				},
 				secondary: {
-					DEFAULT: '#8AC441', // Green
-					foreground: '#1A1A1A', // Black
+					DEFAULT: 'var(--secondary)',
+					foreground: 'var(--secondary-foreground)',
 				},
 				destructive: {
-					DEFAULT: '#EC1C24', // Red
-					foreground: '#FFF1DB', // Peach
+					DEFAULT: 'var(--destructive)',
+					foreground: 'var(--destructive-foreground)',
 				},
 				muted: {
-					DEFAULT: '#8AC441', // Green
-					foreground: '#5E8D87', // Dark Green
+					DEFAULT: 'var(--muted)',
+					foreground: 'var(--muted-foreground)',
 				},
 				accent: {
-					DEFAULT: '#8AC441', // Green
-					foreground: '#1A1A1A', // Black
+					DEFAULT: 'var(--accent)',
+					foreground: 'var(--accent-foreground)',
 				},
 				popover: {
-					DEFAULT: '#A3BE8C', // Light Green
-					foreground: '#1A1A1A', // Black
+					DEFAULT: 'var(--popover)',
+					foreground: 'var(--popover-foreground)',
 				},
 				card: {
-					DEFAULT: '#A3BE8C', // Light Green
-					foreground: '#1A1A1A', // Black
+					DEFAULT: 'var(--card)',
+					foreground: 'var(--card-foreground)',
 				},
 			},
 			borderRadius: {
@@ -68,7 +61,7 @@ const config = {
 			},
 			backgroundImage: {
 				'text-gradient':
-					'linear-gradient(90deg, #EC1C24, #8AC441, #FFF1DB, #A3BE8C, #5E8D87)',
+					'linear-gradient(90deg, var(--chart-1) 25%, var(--chart-2) 50%, var(--chart-3) 60%, var(--chart-4) 75%, var(--chart-5))',
 			},
 			keyframes: {
 				'accordion-down': {
