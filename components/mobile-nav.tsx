@@ -9,7 +9,6 @@ const mobileItems = [
 	{ title: 'OC', link: '/' },
 	{ title: 'Projects', link: '/#projects' },
 	{ title: 'Publications', link: '/#publications' },
-	{ title: 'Experiences', link: '/#experiences' },
 	{ title: 'Honors', link: '/#honors' },
 	{ title: 'Contact', link: '/#contact' },
 ];
