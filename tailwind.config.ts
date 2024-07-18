@@ -61,7 +61,7 @@ const config = {
 			},
 			backgroundImage: {
 				'text-gradient':
-					'linear-gradient(90deg, var(--chart-1) 25%, var(--chart-2) 50%, var(--chart-3) 60%, var(--chart-4) 75%, var(--chart-5))',
+					'linear-gradient(90deg, #ff0000, #00ff00, #ff00ff, #00ffff, #ff6600)',
 			},
 			keyframes: {
 				'accordion-down': {
