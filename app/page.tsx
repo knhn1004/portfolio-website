@@ -8,6 +8,8 @@ import { SparklesCore } from '@/components/ui/sparkles';
 import { motion } from 'framer-motion';
 import { HeroHighlight, Highlight } from '@/components/ui/hero-highlight';
 import { LaptopScroll } from '@/components/laptop-scroll';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
+import { FlipWords } from '@/components/ui/flip-words';
 
 function Model({ modelPath }: { modelPath: string }) {
 	const { scene, animations } = useGLTF(modelPath);
@@ -24,7 +26,7 @@ function Model({ modelPath }: { modelPath: string }) {
 			object={scene}
 			scale={[2, 2, 2]}
 			position={[0, -30, -30]}
-			rotation={[0, Math.PI / 6, 0]}
+			rotation={[0, Math.PI / 6, Math.PI/ 6]}
 		/>
 	);
 }
@@ -33,8 +35,8 @@ export default function Home() {
 	const modelPath = '/3d/spaceship-cb2.glb';
 
 	return (
-		<>
-			<div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+		<div className="container">
+			<div className="h-[40rem] relative w-full bg-black flex flex-col md:flex-row items-center justify-center overflow-hidden rounded-md">
 				<div className="w-full absolute inset-0 h-screen">
 					<SparklesCore
 						id="tsparticlesfullpage"
@@ -46,7 +48,7 @@ export default function Home() {
 						particleColor="#FFFFFF"
 					/>
 				</div>
-				<HeroHighlight>
+				<div className="flex-1 md:flex-none md:w-1/3 flex flex-col items-center justify-center z-10">
 					<motion.h1
 						initial={{
 							opacity: 0,
@@ -60,35 +62,43 @@ export default function Home() {
 							duration: 0.5,
 							ease: [0.4, 0.0, 0.2, 1],
 						}}
-						className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+						className="text-4xl px-4 lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
 					>
-						<span className="text-5xl">
-
-						</span>
 						Oliver Chou
 						<br />
-						<Highlight className="text-black dark:text-white">
-							Software Engineer
-						</Highlight>
+						<span className="text-2xl">
+							<FlipWords
+								words={[
+									'Software Engineer',
+									'Cyber Security',
+									'DevOps',
+									'Mobile Development',
+									'Web Development',
+									'Artificial Intelligence',
+									'Entrepreneur',
+								]}
+							/>
+						</span>
 					</motion.h1>
-				</HeroHighlight>
-
-				<Canvas
-					gl={{ preserveDrawingBuffer: true }}
-					style={{ width: '100vw', height: '100vh' }}
-					camera={{ position: [0, 40, 20] }}
-				>
-					<Suspense fallback={null}>
-						<ambientLight intensity={30} />
-						<directionalLight position={[10, 10, 10]} intensity={30} />
-						<pointLight position={[-10, -10, -10]} intensity={30} />
-						<Model modelPath={modelPath} />
-					</Suspense>
-				</Canvas>
+				</div>
+				<div className="flex-1 w-full h-full z-0">
+					<Canvas
+						gl={{ preserveDrawingBuffer: true }}
+						style={{ width: '100%', height: '100%' }}
+						camera={{ position: [0, 40, 20] }}
+					>
+						<Suspense fallback={null}>
+							<ambientLight intensity={50} />
+							<directionalLight position={[10, 10, 10]} intensity={20} />
+							<pointLight position={[-10, -10, -10]} intensity={20} />
+							<Model modelPath={modelPath} />
+						</Suspense>
+					</Canvas>
+				</div>
 			</div>
 			<div className="container pt-5">
 				<LaptopScroll />
 			</div>
-		</>
+		</div>
 	);
 }
