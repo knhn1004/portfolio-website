@@ -3,17 +3,17 @@ import React from 'react';
 import { ContainerScroll } from '@/components/ui/container-scroll-animation';
 import Image from 'next/image';
 
-export function LaptopScroll() {
+export function PublicationsHero() {
 	return (
 		<div className="flex flex-col overflow-hidden">
 			<ContainerScroll
 				titleComponent={
 					<>
 						<h1 className="text-xl font-semibold text-white">
-							Creating seamless digital experiences,
+							Research in Applied Computer Science and Cyber Security
 							<br />
 							<span className="text-2xl md:text-[6rem] font-bold mt-1 leading-none">
-								Code. Innovate.
+								Publications
 							</span>
 						</h1>
 					</>

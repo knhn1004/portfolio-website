@@ -4,12 +4,13 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { motion } from 'framer-motion';
-import { LaptopScroll } from '@/components/laptop-scroll';
+import { PublicationsHero } from '@/components/publications-hero';
 import { FlipWords } from '@/components/ui/flip-words';
 import { ProjectsParallax } from '@/components/ui/projects-parallax';
 import { projects } from '@/lib/data/projects';
 import { Model } from '@/components/model';
 import { Meteors } from '@/components/ui/meteors';
+import { ProjectCards } from '@/components/ui/project-cards';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
@@ -90,10 +91,13 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="container pt-5">
-				<LaptopScroll />
+				<ProjectsParallax projects={projects} />
 			</div>
 			<div className="container pt-5">
-				<ProjectsParallax projects={projects} />
+				<ProjectCards items={projects} />
+			</div>
+			<div className="container pt-5">
+				<PublicationsHero />
 			</div>
 		</div>
 	);
