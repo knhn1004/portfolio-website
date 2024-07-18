@@ -6,10 +6,10 @@ import { Suspense } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { motion } from 'framer-motion';
-import { HeroHighlight, Highlight } from '@/components/ui/hero-highlight';
 import { LaptopScroll } from '@/components/laptop-scroll';
-import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 import { FlipWords } from '@/components/ui/flip-words';
+import { ProjectsParallax } from '@/components/ui/projects-parallax';
+import { projects } from '@/lib/data/projects';
 
 function Model({ modelPath }: { modelPath: string }) {
 	const { scene, animations } = useGLTF(modelPath);
@@ -98,6 +98,9 @@ export default function Home() {
 			</div>
 			<div className="container pt-5">
 				<LaptopScroll />
+			</div>
+			<div className="container pt-5">
+			<ProjectsParallax projects={projects} />
 			</div>
 		</div>
 	);
