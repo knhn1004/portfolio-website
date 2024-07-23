@@ -11,7 +11,9 @@ export async function fetchProjects(): Promise<IProject[]> {
 	return results.map(project => ({
 		id: project.id as string,
 		name: (project as any).properties.Name.title[0].plain_text as string,
-		thumbnail: (project as any).properties.images.files[0].file.url as string,
+		thumbnail:
+			(project as any).properties.images.files[0]?.file.url ||
+			'https://placehold.co/600x400/jpg',
 		description: (project as any).properties.Description.rich_text[0]
 			.plain_text as string,
 		link: (project as any).properties.URL.url,

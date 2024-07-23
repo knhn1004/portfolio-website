@@ -11,7 +11,6 @@ import { Model } from '@/components/model';
 import { Meteors } from '@/components/ui/meteors';
 import { ProjectCards } from '@/components/ui/project-cards';
 import { HonorsSlider } from '@/components/ui/honors-slider';
-import { honors } from '@/lib/data/honors';
 import { ContactForm } from '@/components/contact-form';
 import { fetchHonors, fetchProjects } from '@/lib/db/notion';
 import { IProject } from '@/lib/models/project';
