@@ -5,6 +5,7 @@ import Header from '@/components/site-header';
 import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 				<body className={`${inter.className} layout`}>
 					<Header />
 					<main>{children}</main>
+					<Analytics />
 					<Toaster />
 					<Footer />
 				</body>
