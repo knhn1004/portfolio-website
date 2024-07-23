@@ -1,13 +1,24 @@
 'use server';
-import { Client } from '@notionhq/client';
+import { Client, LogLevel } from '@notionhq/client';
 import { IProject } from '@/lib/models/project';
 import { IHonor } from '../models/honor';
 import { IPublication } from '../models/publication';
+import { IQuestionRequest } from '../models/questionRequest';
 
 export async function fetchProjects(): Promise<IProject[]> {
-	const notion = new Client({ auth: process.env.NOTION_TOKEN });
+	const notion = new Client({
+		auth: process.env.NOTION_TOKEN,
+		logLevel:
+			process.env.NODE_ENV === 'development' ? LogLevel.DEBUG : LogLevel.ERROR,
+	});
 	const { results } = await notion.databases.query({
 		database_id: process.env.PROJECTS_DATABASE_ID || '',
+		filter: {
+			property: 'show',
+			checkbox: {
+				equals: true,
+			},
+		},
 	});
 	return results.map(project => ({
 		id: project.id as string,
@@ -22,9 +33,19 @@ export async function fetchProjects(): Promise<IProject[]> {
 }
 
 export async function fetchHonors(): Promise<IHonor[]> {
-	const notion = new Client({ auth: process.env.NOTION_TOKEN });
+	const notion = new Client({
+		auth: process.env.NOTION_TOKEN,
+		logLevel:
+			process.env.NODE_ENV === 'development' ? LogLevel.DEBUG : LogLevel.ERROR,
+	});
 	const { results } = await notion.databases.query({
 		database_id: process.env.HONORS_DATABASE_ID || '',
+		filter: {
+			property: 'show',
+			checkbox: {
+				equals: true,
+			},
+		},
 	});
 	return results.map(honor => ({
 		id: honor.id as string,
@@ -47,4 +68,75 @@ export async function fetchPublications(): Promise<IPublication[]> {
 		image: (publication as any).properties.images.files[0]?.file.url as string,
 		url: (publication as any).properties.url.url as string,
 	}));
+}
+
+export async function handleQuestionForm(
+	req: IQuestionRequest
+): Promise<boolean> {
+	let isValid = true;
+	Object.keys(req).forEach(key => {
+		if (!req[key] || req[key] === '') {
+			isValid = false;
+		}
+	});
+	if (!isValid) {
+		return false;
+	}
+
+	const notion = new Client({ auth: process.env.NOTION_TOKEN });
+	try {
+		await notion.pages.create({
+			parent: {
+				database_id: process.env.QUESTION_FORM_DATABASE_ID || '',
+			},
+			properties: {
+				firstName: {
+					title: [
+						{
+							type: 'text',
+							text: {
+								content: req.firstName,
+							},
+						},
+					],
+				},
+				lastName: {
+					rich_text: [
+						{
+							type: 'text',
+							text: {
+								content: req.lastName,
+							},
+						},
+					],
+				},
+				organization: {
+					rich_text: [
+						{
+							type: 'text',
+							text: {
+								content: req.organization,
+							},
+						},
+					],
+				},
+				email: {
+					email: req.email,
+				},
+				question: {
+					rich_text: [
+						{
+							type: 'text',
+							text: {
+								content: req.question,
+							},
+						},
+					],
+				},
+			},
+		});
+		return true;
+	} catch (error) {
+		return false;
+	}
 }

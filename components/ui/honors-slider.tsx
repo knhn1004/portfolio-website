@@ -1,5 +1,6 @@
 'use client';
 
+import { IHonor } from '@/lib/models/honor';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState } from 'react';
 
@@ -10,11 +11,7 @@ export const HonorsSlider = ({
 	pauseOnHover = true,
 	className,
 }: {
-	items: {
-		title: string;
-		issuedBy: string;
-		date: string;
-	}[];
+	items: IHonor[];
 	direction?: 'left' | 'right';
 	speed?: 'fast' | 'normal' | 'slow';
 	pauseOnHover?: boolean;
@@ -92,7 +89,7 @@ export const HonorsSlider = ({
 							background:
 								'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
 						}}
-						key={item.issuedBy}
+						key={item.id}
 					>
 						<blockquote>
 							<div

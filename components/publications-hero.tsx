@@ -9,7 +9,6 @@ export function PublicationsHero({
 }: {
 	publication: IPublication;
 }) {
-	console.log(publication);
 	return (
 		<div className="flex flex-col overflow-hidden">
 			<ContainerScroll
