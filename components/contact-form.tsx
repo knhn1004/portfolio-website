@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,31 +8,43 @@ import { cn } from '@/lib/utils';
 import { IQuestionRequest } from '@/lib/models/questionRequest';
 import { handleQuestionForm } from '@/lib/db/notion';
 import { useToast } from './ui/use-toast';
+import { useReCaptcha } from 'next-recaptcha-v3';
 
 export function ContactForm() {
-	const [form, setForm] = useState<IQuestionRequest>({
+	const emptyForm = {
 		firstName: '',
 		lastName: '',
 		organization: '',
 		email: '',
 		question: '',
+	};
+
+	const [form, setForm] = useState<IQuestionRequest>({
+		...emptyForm,
 	});
 
 	const { toast } = useToast();
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		if (await handleQuestionForm(form)) {
-			toast({
-				title: 'Question successfully submitted!',
-			});
-		} else {
-			toast({
-				title: 'Error submitting question',
-				description: 'error',
-			});
-		}
-	};
+	const { executeRecaptcha } = useReCaptcha();
+	const handleSubmit = useCallback(
+		async (e: React.FormEvent<HTMLFormElement>) => {
+			e.preventDefault();
+			const token = await executeRecaptcha('question_form');
+			if (await handleQuestionForm({ ...form, token })) {
+				toast({
+					title: 'Question successfully submitted!',
+				});
+				setForm({ ...emptyForm });
+			} else {
+				toast({
+					title: 'Error submitting question',
+					description: 'error',
+				});
+			}
+		},
+		[executeRecaptcha, form]
+	);
+
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => {
@@ -52,6 +64,7 @@ export function ContactForm() {
 							placeholder="Tyler"
 							type="text"
 							onChange={handleChange}
+							value={form.firstName}
 						/>
 					</LabelInputContainer>
 					<LabelInputContainer>
@@ -61,6 +74,7 @@ export function ContactForm() {
 							placeholder="Durden"
 							type="text"
 							onChange={handleChange}
+							value={form.lastName}
 						/>
 					</LabelInputContainer>
 					<LabelInputContainer>
@@ -70,6 +84,7 @@ export function ContactForm() {
 							placeholder="School/Company etc"
 							type="text"
 							onChange={handleChange}
+							value={form.organization}
 						/>
 					</LabelInputContainer>
 				</div>
@@ -80,6 +95,7 @@ export function ContactForm() {
 						placeholder="projectmayhem@fc.com"
 						type="email"
 						onChange={handleChange}
+						value={form.email}
 					/>
 				</LabelInputContainer>
 				<LabelInputContainer className="mb-4">
@@ -88,6 +104,7 @@ export function ContactForm() {
 						id="question"
 						placeholder="Your question"
 						onChange={handleChange}
+						value={form.question}
 					/>
 				</LabelInputContainer>
 

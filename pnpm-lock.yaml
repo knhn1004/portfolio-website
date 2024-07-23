@@ -65,6 +65,9 @@ dependencies:
   next:
     specifier: 14.2.5
     version: 14.2.5(react-dom@18.3.1)(react@18.3.1)
+  next-recaptcha-v3:
+    specifier: ^1.4.1
+    version: 1.4.1(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
   react:
     specifier: ^18
     version: 18.3.1
@@ -3865,6 +3868,22 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-recaptcha-v3@1.4.1(next@14.2.5)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-ZQXwcGHMIbXG3ppK6s2EGyTMjkVW5wARupQsBrFQbO6BhNlfBXAb3BVQEZt6uYyp12z5tf06DEa3JIqCqQoXTQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+    dependencies:
+      next: 14.2.5(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
 
   /next@14.2.5(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-0f8aRfBVL+mpzfBjYfQuLWh2WyAwtJXCRfkPF4UJ5qd2YwrHczsrSzXU4tRMV0OAxR8ZJZWPFn6uhSC56UTsLA==}

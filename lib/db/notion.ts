@@ -73,6 +73,22 @@ export async function fetchPublications(): Promise<IPublication[]> {
 export async function handleQuestionForm(
 	req: IQuestionRequest
 ): Promise<boolean> {
+	// recaptcha
+	if (!req.token) {
+		return false;
+	}
+	const catpchaUrl = new URL('https://www.google.com/recaptcha/api/siteverify');
+	catpchaUrl.searchParams.append(
+		'secret',
+		process.env.RECAPTCHA_SECRET_KEY || ''
+	);
+	catpchaUrl.searchParams.append('response', req.token || '');
+	const response = await fetch(catpchaUrl.toString());
+	if (!response.ok) {
+		return false;
+	}
+
+	// valid form
 	let isValid = true;
 	Object.keys(req).forEach(key => {
 		if (!req[key] || req[key] === '') {

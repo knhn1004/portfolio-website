@@ -4,5 +4,6 @@ export interface IQuestionRequest {
 	organization: string;
 	email: string;
 	question: string;
+	token?: string;
 	[key: string]: any;
 }
