@@ -9,16 +9,9 @@ import {
 } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IProject } from '@/lib/models/project';
 
-export const ProjectsParallax = ({
-	projects,
-}: {
-	projects: {
-		title: string;
-		link: string;
-		thumbnail: string;
-	}[];
-}) => {
+export const ProjectsParallax = ({ projects }: { projects: IProject[] }) => {
 	const firstRow = projects.slice(0, 5);
 	const secondRow = projects.slice(5, 10);
 	const thirdRow = projects.slice(10, 15);
@@ -70,11 +63,11 @@ export const ProjectsParallax = ({
 				className=""
 			>
 				<motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
-					{firstRow.map(product => (
+					{firstRow.map(project => (
 						<ProjectCard
-							project={product}
+							project={project}
 							translate={translateX}
-							key={product.title}
+							key={project.id}
 						/>
 					))}
 				</motion.div>
@@ -83,7 +76,7 @@ export const ProjectsParallax = ({
 						<ProjectCard
 							project={product}
 							translate={translateXReverse}
-							key={product.title}
+							key={product.id}
 						/>
 					))}
 				</motion.div>
@@ -92,7 +85,7 @@ export const ProjectsParallax = ({
 						<ProjectCard
 							project={product}
 							translate={translateX}
-							key={product.title}
+							key={product.id}
 						/>
 					))}
 				</motion.div>
@@ -118,11 +111,7 @@ export const ProjectCard = ({
 	project,
 	translate,
 }: {
-	project: {
-		title: string;
-		link: string;
-		thumbnail: string;
-	};
+	project: IProject;
 	translate: MotionValue<number>;
 }) => {
 	return (
@@ -133,7 +122,7 @@ export const ProjectCard = ({
 			whileHover={{
 				y: -20,
 			}}
-			key={project.title}
+			key={project.id}
 			className="group/product h-96 w-[30rem] relative flex-shrink-0"
 		>
 			<Link
@@ -145,12 +134,12 @@ export const ProjectCard = ({
 					height="600"
 					width="600"
 					className="object-cover object-left-top absolute h-full w-full inset-0"
-					alt={project.title}
+					alt={project.name}
 				/>
 			</Link>
 			<div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
 			<h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-				{project.title}
+				{project.name}
 			</h2>
 		</motion.div>
 	);

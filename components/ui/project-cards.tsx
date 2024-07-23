@@ -74,7 +74,7 @@ export const ProjectCards = ({
 	itemsPerPage = 6,
 }: {
 	items: {
-		title: string;
+		name: string;
 		description: string;
 		link: string;
 	}[];
@@ -126,7 +126,7 @@ export const ProjectCards = ({
 							)}
 						</AnimatePresence>
 						<Card>
-							<CardTitle>{item.title}</CardTitle>
+							<CardTitle>{item.name}</CardTitle>
 							<CardDescription>{item.description}</CardDescription>
 						</Card>
 					</Link>

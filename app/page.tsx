@@ -1,23 +1,33 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { motion } from 'framer-motion';
 import { PublicationsHero } from '@/components/publications-hero';
 import { FlipWords } from '@/components/ui/flip-words';
 import { ProjectsParallax } from '@/components/ui/projects-parallax';
-import { projects } from '@/lib/data/projects';
 import { Model } from '@/components/model';
 import { Meteors } from '@/components/ui/meteors';
 import { ProjectCards } from '@/components/ui/project-cards';
 import { HonorsSlider } from '@/components/ui/honors-slider';
 import { honors } from '@/lib/data/honors';
 import { ContactForm } from '@/components/contact-form';
+import { fetchProjects } from '@/lib/db/notion';
+import { IProject } from '@/lib/models/project';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
 	const subtitle = '/3d/subtitle.glb';
+	const [projects, setProjects] = useState<IProject[]>([]);
+
+	useEffect(() => {
+		const getProjects = async () => {
+			const _ = await fetchProjects();
+			setProjects(_);
+		};
+		getProjects();
+	}, []);
 
 	return (
 		<div className="container">
