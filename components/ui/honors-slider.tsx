@@ -11,9 +11,9 @@ export const HonorsSlider = ({
 	className,
 }: {
 	items: {
-		quote: string;
-		name: string;
 		title: string;
+		issuedBy: string;
+		date: string;
 	}[];
 	direction?: 'left' | 'right';
 	speed?: 'fast' | 'normal' | 'slow';
@@ -92,7 +92,7 @@ export const HonorsSlider = ({
 							background:
 								'linear-gradient(180deg, var(--slate-800), var(--slate-900)',
 						}}
-						key={item.name}
+						key={item.issuedBy}
 					>
 						<blockquote>
 							<div
@@ -100,15 +100,15 @@ export const HonorsSlider = ({
 								className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
 							></div>
 							<span className=" relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
-								{item.quote}
+								{item.title}
 							</span>
 							<div className="relative z-20 mt-6 flex flex-row items-center">
 								<span className="flex flex-col gap-1">
 									<span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-										{item.name}
+										{item.issuedBy}
 									</span>
 									<span className=" text-sm leading-[1.6] text-gray-400 font-normal">
-										{item.title}
+										{item.date}
 									</span>
 								</span>
 							</div>

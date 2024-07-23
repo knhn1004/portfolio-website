@@ -13,20 +13,28 @@ import { ProjectCards } from '@/components/ui/project-cards';
 import { HonorsSlider } from '@/components/ui/honors-slider';
 import { honors } from '@/lib/data/honors';
 import { ContactForm } from '@/components/contact-form';
-import { fetchProjects } from '@/lib/db/notion';
+import { fetchHonors, fetchProjects } from '@/lib/db/notion';
 import { IProject } from '@/lib/models/project';
+import { IHonor } from '@/lib/models/honor';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
 	const subtitle = '/3d/subtitle.glb';
 	const [projects, setProjects] = useState<IProject[]>([]);
+	const [honors, setHonors] = useState<IHonor[]>([]);
 
 	useEffect(() => {
 		const getProjects = async () => {
 			const _ = await fetchProjects();
 			setProjects(_);
 		};
+		const getHonors = async () => {
+			const _ = await fetchHonors();
+			console.log(_);
+			setHonors(_);
+		};
 		getProjects();
+		getHonors();
 	}, []);
 
 	return (
