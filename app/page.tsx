@@ -12,15 +12,17 @@ import { Meteors } from '@/components/ui/meteors';
 import { ProjectCards } from '@/components/ui/project-cards';
 import { HonorsSlider } from '@/components/ui/honors-slider';
 import { ContactForm } from '@/components/contact-form';
-import { fetchHonors, fetchProjects } from '@/lib/db/notion';
+import { fetchHonors, fetchProjects, fetchPublications } from '@/lib/db/notion';
 import { IProject } from '@/lib/models/project';
 import { IHonor } from '@/lib/models/honor';
+import { IPublication } from '@/lib/models/publication';
 
 export default function Home() {
 	const spaceship = '/3d/spaceship-cb2.glb';
 	const subtitle = '/3d/subtitle.glb';
 	const [projects, setProjects] = useState<IProject[]>([]);
 	const [honors, setHonors] = useState<IHonor[]>([]);
+	const [publications, setPublications] = useState<IPublication[]>([]);
 
 	useEffect(() => {
 		const getProjects = async () => {
@@ -29,11 +31,15 @@ export default function Home() {
 		};
 		const getHonors = async () => {
 			const _ = await fetchHonors();
-			console.log(_);
 			setHonors(_);
+		};
+		const getPublications = async () => {
+			const _ = await fetchPublications();
+			setPublications(_);
 		};
 		getProjects();
 		getHonors();
+		getPublications();
 	}, []);
 
 	return (
@@ -115,7 +121,9 @@ export default function Home() {
 				<ProjectCards items={projects} />
 			</div>
 			<div id="publications" className="container pt-5">
-				<PublicationsHero />
+				{publications.length > 0 && (
+					<PublicationsHero publication={publications[0]} />
+				)}
 			</div>
 			<div id="honors" className="container pt-5">
 				<h2 className="text-2xl md:text-[4rem] font-bold text-center">
