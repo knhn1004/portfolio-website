@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
 					<Header />
 					<main>{children}</main>
 					<Analytics />
+					<SpeedInsights />
 					<Toaster />
 					<Footer />
 				</body>
