@@ -12,9 +12,9 @@ import Link from 'next/link';
 import { IProject } from '@/lib/models/project';
 
 export const ProjectsParallax = ({ projects }: { projects: IProject[] }) => {
-	const firstRow = projects.slice(0, 3);
-	const secondRow = projects.slice(3, 6);
-	const thirdRow = projects.slice(6, -1);
+	const firstRow = projects.slice(0, 4);
+	const secondRow = projects.slice(4, 8);
+	const thirdRow = projects.slice(8, -1);
 	const ref = React.useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,
