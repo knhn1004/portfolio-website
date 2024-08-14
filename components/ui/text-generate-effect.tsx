@@ -23,17 +23,14 @@ export const TextGenerateEffect = ({
 				delay: stagger(0.2),
 			}
 		);
-	}, [scope.current]);
+	}, [animate]);
 
 	const renderWords = () => {
 		return (
 			<motion.div ref={scope}>
 				{wordsArray.map((word, idx) => {
 					return (
-						<motion.span
-							key={word + idx}
-							className="text-white opacity-0"
-						>
+						<motion.span key={word + idx} className="text-white opacity-0">
 							{word}{' '}
 						</motion.span>
 					);

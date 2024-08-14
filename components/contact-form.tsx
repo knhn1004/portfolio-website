@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useMemo } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,13 +11,16 @@ import { useToast } from './ui/use-toast';
 import { useReCaptcha } from 'next-recaptcha-v3';
 
 export function ContactForm() {
-	const emptyForm = {
-		firstName: '',
-		lastName: '',
-		organization: '',
-		email: '',
-		question: '',
-	};
+	const emptyForm = useMemo(
+		() => ({
+			firstName: '',
+			lastName: '',
+			organization: '',
+			email: '',
+			question: '',
+		}),
+		[]
+	);
 
 	const [form, setForm] = useState<IQuestionRequest>({
 		...emptyForm,
@@ -42,7 +45,7 @@ export function ContactForm() {
 				});
 			}
 		},
-		[executeRecaptcha, form]
+		[executeRecaptcha, form, emptyForm, toast]
 	);
 
 	const handleChange = (
