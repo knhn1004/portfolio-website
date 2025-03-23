@@ -1,6 +1,7 @@
 'use client';
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useRef, useEffect } from "react";
+import { Group } from "three";
 
 export function Model({
 	modelPath, position, rotation, scale,
@@ -11,7 +12,7 @@ export function Model({
 	scale: number[];
 }) {
 	const { scene, animations } = useGLTF(modelPath);
-	const ref = useRef();
+	const ref = useRef<Group>(null);
 	const { actions } = useAnimations(animations, ref);
 
 	useEffect(() => {
