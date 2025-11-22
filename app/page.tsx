@@ -43,7 +43,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="container">
+		<div className="container mx-auto">
 			<div className="h-[40rem] relative w-full bg-black flex flex-col md:flex-row items-center justify-center overflow-hidden rounded-md">
 				<div className="w-full absolute inset-0 h-screen">
 					<SparklesCore
