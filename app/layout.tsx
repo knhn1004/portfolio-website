@@ -30,7 +30,7 @@ export default function RootLayout({
 				reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
 			>
 				<html lang="en">
-					<body className={`${inter.className} layout`}>
+					<body className={`${inter.className} layout`} suppressHydrationWarning>
 						<Header />
 						<main>{children}</main>
 						<Toaster />
