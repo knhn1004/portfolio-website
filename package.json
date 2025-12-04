@@ -28,7 +28,7 @@
 		"framer-motion": "^12.5.0",
 		"lucide-react": "^0.483.0",
 		"mini-svg-data-uri": "^1.4.4",
-		"next": "15.2.3",
+		"next": "15.2.6",
 		"next-recaptcha-v3": "^1.5.2",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
