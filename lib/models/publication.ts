@@ -4,4 +4,5 @@ export interface IPublication {
 	date: string;
 	image: string;
 	url: string;
+	tags: string[];
 }

@@ -1,0 +1,93 @@
+export function SvgFilters() {
+	return (
+		<svg
+			width={0}
+			height={0}
+			style={{ position: 'absolute' }}
+			aria-hidden="true"
+		>
+			<defs>
+				<filter id="oc-chip-a" x="-2%" y="-2%" width="104%" height="104%">
+					<feTurbulence
+						type="turbulence"
+						baseFrequency="0.022"
+						numOctaves={2}
+						seed={3}
+						result="n"
+					/>
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="n"
+						scale={1.8}
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<filter id="oc-chip-b" x="-2%" y="-2%" width="104%" height="104%">
+					<feTurbulence
+						type="turbulence"
+						baseFrequency="0.025"
+						numOctaves={2}
+						seed={11}
+						result="n"
+					/>
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="n"
+						scale={1.6}
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<filter id="oc-chip-c" x="-2%" y="-2%" width="104%" height="104%">
+					<feTurbulence
+						type="turbulence"
+						baseFrequency="0.02"
+						numOctaves={2}
+						seed={19}
+						result="n"
+					/>
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="n"
+						scale={2}
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<filter id="oc-chip-strong" x="-3%" y="-3%" width="106%" height="106%">
+					<feTurbulence
+						type="turbulence"
+						baseFrequency="0.03"
+						numOctaves={2}
+						seed={5}
+						result="n"
+					/>
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="n"
+						scale={2.5}
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+				<filter id="oc-chip-fine" x="-2%" y="-2%" width="104%" height="104%">
+					<feTurbulence
+						type="turbulence"
+						baseFrequency="0.04"
+						numOctaves={1}
+						seed={13}
+						result="n"
+					/>
+					<feDisplacementMap
+						in="SourceGraphic"
+						in2="n"
+						scale={0.9}
+						xChannelSelector="R"
+						yChannelSelector="G"
+					/>
+				</filter>
+			</defs>
+		</svg>
+	);
+}

@@ -1,17 +1,16 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/site-header';
-import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import Script from 'next/script';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Nav } from '@/components/ds/nav';
+import { SvgFilters } from '@/components/ds/svg-filters';
+import { ThemeInit } from '@/components/ds/theme-init';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-	title: 'Oliver Chou | Portfolio',
-	description: 'Oliver Chou Portfolio',
+	title: siteConfig.meta.title,
+	description: siteConfig.meta.description,
 };
 
 export default function RootLayout({
@@ -20,24 +19,25 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<>
-			<Script
-				defer
-				src={process.env.NEXT_PUBLIC_UMAMI_SRC}
-				data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-			/>
-			<ReCaptchaProvider
-				reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-			>
-				<html lang="en">
-					<body className={`${inter.className} layout`} suppressHydrationWarning>
-						<Header />
-						<main>{children}</main>
-						<Toaster />
-						<Footer />
-					</body>
-				</html>
-			</ReCaptchaProvider>
-		</>
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				<ThemeInit />
+			</head>
+			<body suppressHydrationWarning>
+				<Script
+					defer
+					src={process.env.NEXT_PUBLIC_UMAMI_SRC}
+					data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+				/>
+				<ReCaptchaProvider
+					reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+				>
+					<SvgFilters />
+					<Nav />
+					<main>{children}</main>
+					<Toaster />
+				</ReCaptchaProvider>
+			</body>
+		</html>
 	);
 }

@@ -34,3 +34,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Agent/tooling docs — kept out of the public repo since this is open source.
+CLAUDE.md
+.impeccable.md
+memory/
+
+# playwright MCP debug output
+.playwright-mcp/
+# dev-only screenshots dropped in the repo root
+/desktop-*.png
+/mobile-*.png
+/writing-page-*.png
+

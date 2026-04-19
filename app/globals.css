@@ -1,103 +1,657 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
-/* Add the custom font face */
-@font-face {
-	font-family: 'Virgil';
-	src: url('/fonts/Virgil.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
+/* =====================================================================
+   Oliver Chou — Design System
+   Dual theme: Light ("rock" / warm stone) + Dark ("space" / nebula).
+   Fonts: Instrument Serif (display), Source Sans 3 (sans), JetBrains Mono.
+   ===================================================================== */
+
+/* ----------------------- LIGHT THEME (default, "rock") ----------------------- */
+:root,
+[data-theme="light"] {
+	--paper: #efeae0;
+	--paper-2: #e5dfd1;
+	--paper-3: #d8d1c0;
+	--ink: #14110d;
+	--ink-2: #2b2722;
+	--ink-3: #524c44;
+	--ink-4: #8b8478;
+	--ink-5: #b7b0a2;
+	--rule: #2b272233;
+	--rule-soft: #2b27221a;
+
+	--accent: #4a6b8a;
+	--accent-hover: #38546f;
+	--accent-soft: #4a6b8a1a;
+	--accent-ink: #efeae0;
+
+	--signal-ok: #3f6b3f;
+	--signal-warn: #b58a1e;
+	--signal-alert: #a33a1f;
+	--signal-info: #2a4e6c;
+
+	--bg-texture:
+		radial-gradient(1200px 700px at 10% 0%, #f3eee3 0%, transparent 60%),
+		radial-gradient(900px 600px at 90% 20%, #e8e1d0 0%, transparent 55%),
+		radial-gradient(600px 500px at 50% 100%, #dcd4c0 0%, transparent 60%),
+		linear-gradient(180deg, #efeae0 0%, #e6dfcd 100%);
+	--bg-grain-opacity: 0.5;
+	--bg-grain-color: #14110d;
 }
 
-/* Apply the custom font to the whole site */
-@layer base {
-	:root {
-		--background: #000000; /* Dark Background */
-		--foreground: #ffffff; /* White for contrast */
-		--card: #000000; /* Dark Background */
-		--card-foreground: #ffffff; /* White for contrast */
-		--popover: #1abc9c; /* Turquoise */
-		--popover-foreground: #ffffff; /* White for contrast */
-		--primary: #00adef; /* Blue */
-		--primary-foreground: #ffffff; /* White */
-		--secondary: #9b59b6; /* Purple */
-		--secondary-foreground: #ffffff; /* White */
-		--muted: #1abc9c; /* Turquoise */
-		--muted-foreground: #ffffff; /* White */
-		--accent: #9b59b6; /* Purple */
-		--accent-foreground: #ffffff; /* White */
-		--destructive: #e91e63; /* Pink */
-		--destructive-foreground: #ffffff; /* White */
-		--border: #00adef; /* Blue */
-		--input: #00adef; /* Blue */
-		--ring: #e91e63; /* Pink */
-		--radius: 0.5rem;
-		--chart-1: #00adef; /* Blue */
-		--chart-2: #9b59b6; /* Purple */
-		--chart-3: #e91e63; /* Pink */
-		--chart-4: #1abc9c; /* Turquoise */
-		--chart-5: #1abc9c; /* Turquoise */
-	}
+/* ----------------------- DARK THEME ("space") ----------------------- */
+[data-theme="dark"] {
+	--paper: #0a0b12;
+	--paper-2: #111322;
+	--paper-3: #1a1d30;
+	--ink: #eceae3;
+	--ink-2: #d8d3c5;
+	--ink-3: #9b93a5;
+	--ink-4: #6e6882;
+	--ink-5: #3a3752;
+	--rule: #d8d3c533;
+	--rule-soft: #d8d3c51a;
 
-	.dark {
-		--background: #000000; /* Dark Background */
-		--foreground: #ffffff; /* White for contrast */
-		--card: #000000; /* Dark Background */
-		--card-foreground: #ffffff; /* White for contrast */
-		--popover: #1abc9c; /* Turquoise */
-		--popover-foreground: #ffffff; /* White for contrast */
-		--primary: #00adef; /* Blue */
-		--primary-foreground: #ffffff; /* White */
-		--secondary: #9b59b6; /* Purple */
-		--secondary-foreground: #ffffff; /* White */
-		--muted: #1abc9c; /* Turquoise */
-		--muted-foreground: #ffffff; /* White */
-		--accent: #9b59b6; /* Purple */
-		--accent-foreground: #ffffff; /* White */
-		--destructive: #e91e63; /* Pink */
-		--destructive-foreground: #ffffff; /* White */
-		--border: #00adef; /* Blue */
-		--input: #00adef; /* Blue */
-		--ring: #e91e63; /* Pink */
-		--chart-1: #00adef; /* Blue */
-		--chart-2: #9b59b6; /* Purple */
-		--chart-3: #e91e63; /* Pink */
-		--chart-4: #1abc9c; /* Turquoise */
-		--chart-5: #1abc9c; /* Turquoise */
-	}
+	--accent: #7fa3c4;
+	--accent-hover: #a0bcd8;
+	--accent-soft: #7fa3c420;
+	--accent-ink: #0a0b12;
 
-	* {
-		@apply border-[#00ADEF];
-		font-family: 'Virgil', sans-serif;
-	}
+	--signal-ok: #7fb87f;
+	--signal-warn: #e6c26a;
+	--signal-alert: #e67e54;
+	--signal-info: #6fa4d6;
 
-	body {
-		background-color: var(--background);
-		color: var(--foreground);
-	}
-
-	.bg-hero {
-		background-image: url('/hero-background.png');
-	}
+	--bg-grain-opacity: 0.35;
+	--bg-grain-color: #eceae3;
 }
 
-html {
-	@apply antialiased;
-	background-color: var(--background);
-	font-family: 'Virgil', sans-serif !important;
+/* ----------------------- Accent swaps — [data-accent] on <html> ----------------------- */
+[data-accent="moss"] {
+	--accent: #3a5a3e;
+	--accent-hover: #2b4530;
+	--accent-soft: #3a5a3e1a;
+	--accent-ink: #efeae0;
+}
+[data-theme="dark"][data-accent="moss"] {
+	--accent: #7fa682;
+	--accent-hover: #9ac09d;
+	--accent-soft: #7fa68220;
+	--accent-ink: #0a0b12;
+}
+[data-accent="ochre"] {
+	--accent: #8a6a1e;
+	--accent-hover: #6a5215;
+	--accent-soft: #8a6a1e1a;
+	--accent-ink: #efeae0;
+}
+[data-theme="dark"][data-accent="ochre"] {
+	--accent: #d4b568;
+	--accent-hover: #e4c982;
+	--accent-soft: #d4b56820;
+	--accent-ink: #0a0b12;
+}
+[data-accent="oxide"] {
+	--accent: #a33a1f;
+	--accent-hover: #7f2a12;
+	--accent-soft: #a33a1f1a;
+	--accent-ink: #efeae0;
+}
+[data-theme="dark"][data-accent="oxide"] {
+	--accent: #e67e54;
+	--accent-hover: #f39873;
+	--accent-soft: #e67e5420;
+	--accent-ink: #0a0b12;
 }
 
-.text-shadow {
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+/* ----------------------- Shared tokens ----------------------- */
+:root {
+	--font-display: "Instrument Serif", "Newsreader", Georgia, serif;
+	--font-sans: "Source Sans 3", "Söhne", "Inter", -apple-system, "Helvetica Neue", sans-serif;
+	--font-mono: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+
+	--fs-xs: 13px;
+	--fs-sm: 15px;
+	--fs-base: 17px;
+	--fs-md: 19px;
+	--fs-lg: 22px;
+	--fs-xl: 28px;
+	--fs-2xl: 36px;
+	--fs-3xl: 48px;
+	--fs-4xl: 64px;
+	--fs-5xl: 88px;
+	--fs-6xl: 120px;
+
+	--lh-tight: 1.05;
+	--lh-snug: 1.2;
+	--lh-normal: 1.4;
+	--lh-relaxed: 1.55;
+	--lh-loose: 1.7;
+	--ls-tight: -0.02em;
+	--ls-snug: -0.01em;
+	--ls-normal: 0;
+	--ls-wide: 0.02em;
+	--ls-label: 0.12em;
+
+	--sp-1: 4px;
+	--sp-2: 8px;
+	--sp-3: 12px;
+	--sp-4: 16px;
+	--sp-5: 24px;
+	--sp-6: 32px;
+	--sp-7: 48px;
+	--sp-8: 64px;
+	--sp-9: 96px;
+	--sp-10: 128px;
+	--sp-11: 192px;
+
+	--r-0: 0;
+	--r-1: 2px;
+	--r-2: 4px;
+	--r-3: 8px;
+	--r-pill: 999px;
+	--bw-hair: 0.5px;
+	--bw-thin: 1px;
+	--bw-med: 1.5px;
+	--bw-thick: 2px;
+
+	--shadow-xs: 0 1px 0 0 var(--rule-soft);
+	--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+	--shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+
+	--content-width: 1200px;
+	--prose-width: 680px;
+	--wide-width: 920px;
+
+	--ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--ease-in: cubic-bezier(0.8, 0.2, 1, 0.8);
+	--ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+	--dur-fast: 120ms;
+	--dur-base: 220ms;
+	--dur-slow: 420ms;
+}
+
+/* ----------------------- Base elements ----------------------- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 
 html,
-body,
-#__next {
-	height: 100%;
+body {
 	margin: 0;
+	padding: 0;
+	background: var(--paper);
+	color: var(--ink-2);
+	font-family: var(--font-sans);
+	font-size: var(--fs-base);
+	line-height: var(--lh-relaxed);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transition:
+		background-color var(--dur-slow) var(--ease-out),
+		color var(--dur-slow) var(--ease-out);
+}
+
+html {
 	scroll-behavior: smooth;
+	/* Keep the sticky/floating nav from covering section headers on
+	   hash-jumps. The floating nav is ~56px tall; 88px adds breathing room. */
+	scroll-padding-top: 88px;
+}
+
+section[id] {
+	scroll-margin-top: 88px;
+}
+
+/* Textured background — fixed, avoids repaint on scroll. */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -2;
+	background: var(--bg-texture);
+	transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+/* Grain / dust overlay. */
+body::after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	opacity: var(--bg-grain-opacity);
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.42 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+	background-size: 240px 240px;
+	mix-blend-mode: multiply;
+}
+[data-theme="dark"] body::after {
+	mix-blend-mode: screen;
+}
+
+/* Dark-theme starfield + nebula. */
+[data-theme="dark"] body::before {
+	background:
+		radial-gradient(1px 1px at 20% 15%, #fff 50%, transparent 51%),
+		radial-gradient(1px 1px at 80% 40%, #fff 50%, transparent 51%),
+		radial-gradient(1px 1px at 60% 70%, #fff 50%, transparent 51%),
+		radial-gradient(1px 1px at 35% 85%, #fff 50%, transparent 51%),
+		radial-gradient(1.5px 1.5px at 90% 80%, #fff 50%, transparent 51%),
+		radial-gradient(1px 1px at 10% 55%, #fff 50%, transparent 51%),
+		radial-gradient(1px 1px at 45% 25%, #fff 50%, transparent 51%),
+		radial-gradient(2px 2px at 70% 10%, #fff 50%, transparent 51%),
+		radial-gradient(1200px 800px at 15% 10%, #1b1b3a 0%, transparent 55%),
+		radial-gradient(900px 700px at 85% 20%, #2a1b3d 0%, transparent 55%),
+		radial-gradient(700px 600px at 70% 85%, #3a1f2b 0%, transparent 60%),
+		radial-gradient(500px 400px at 20% 90%, #142040 0%, transparent 55%),
+		linear-gradient(180deg, #07080f 0%, #0a0b12 50%, #07080f 100%);
 }
 
 canvas {
 	display: block;
+}
+
+@keyframes oc-pulse {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	70% {
+		transform: scale(2.6);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(2.6);
+		opacity: 0;
+	}
+}
+
+/* ----------------------- Semantic type ----------------------- */
+.display-xl {
+	font-family: var(--font-display);
+	font-size: var(--fs-6xl);
+	font-weight: 400;
+	line-height: var(--lh-tight);
+	letter-spacing: var(--ls-tight);
+	color: var(--ink);
+}
+.display-lg,
+.h1 {
+	font-family: var(--font-display);
+	font-size: var(--fs-5xl);
+	font-weight: 400;
+	line-height: 1.02;
+	letter-spacing: var(--ls-tight);
+	color: var(--ink);
+}
+.display-md,
+.h2 {
+	font-family: var(--font-display);
+	font-size: var(--fs-3xl);
+	font-weight: 400;
+	line-height: var(--lh-snug);
+	letter-spacing: var(--ls-snug);
+	color: var(--ink);
+}
+.h3 {
+	font-family: var(--font-display);
+	font-size: var(--fs-xl);
+	font-weight: 400;
+	line-height: var(--lh-snug);
+	letter-spacing: var(--ls-snug);
+	color: var(--ink);
+}
+.h4 {
+	font-family: var(--font-sans);
+	font-size: var(--fs-md);
+	font-weight: 600;
+	line-height: var(--lh-snug);
+	letter-spacing: var(--ls-snug);
+	color: var(--ink);
+}
+
+.lead {
+	font-family: var(--font-display);
+	font-size: var(--fs-lg);
+	font-weight: 400;
+	line-height: var(--lh-relaxed);
+	color: var(--ink-2);
+	font-style: italic;
+}
+.body {
+	font-family: var(--font-sans);
+	font-size: var(--fs-base);
+	line-height: var(--lh-relaxed);
+	color: var(--ink-2);
+}
+.body-sm {
+	font-family: var(--font-sans);
+	font-size: var(--fs-sm);
+	line-height: var(--lh-relaxed);
+	color: var(--ink-3);
+}
+.caption {
+	font-family: var(--font-sans);
+	font-size: var(--fs-xs);
+	line-height: var(--lh-normal);
+	color: var(--ink-4);
+}
+
+.eyebrow {
+	font-family: var(--font-mono);
+	font-size: var(--fs-xs);
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: var(--ls-label);
+	text-transform: uppercase;
+	color: var(--ink-3);
+}
+.mono {
+	font-family: var(--font-mono);
+	font-size: var(--fs-sm);
+	color: var(--ink-3);
+	font-feature-settings: "zero", "ss01";
+}
+.mono-xs {
+	font-family: var(--font-mono);
+	font-size: var(--fs-xs);
+	color: var(--ink-4);
+	font-feature-settings: "zero";
+}
+
+.prose {
+	font-family: var(--font-sans);
+	font-size: var(--fs-md);
+	line-height: var(--lh-loose);
+	color: var(--ink-2);
+	max-width: var(--prose-width);
+}
+.prose p + p {
+	margin-top: 1.2em;
+}
+.prose h2 {
+	font-family: var(--font-display);
+	font-size: var(--fs-2xl);
+	font-weight: 400;
+	margin-top: 2em;
+	margin-bottom: 0.4em;
+	color: var(--ink);
+	letter-spacing: var(--ls-snug);
+}
+.prose h3 {
+	font-family: var(--font-display);
+	font-size: var(--fs-xl);
+	font-weight: 400;
+	margin-top: 1.6em;
+	margin-bottom: 0.3em;
+	color: var(--ink);
+}
+
+a {
+	color: var(--ink);
+	text-decoration: underline;
+	text-decoration-color: var(--rule);
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+	transition:
+		color var(--dur-fast) var(--ease-out),
+		text-decoration-color var(--dur-fast) var(--ease-out);
+}
+a:hover {
+	color: var(--accent);
+	text-decoration-color: var(--accent);
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid var(--rule);
+	margin: var(--sp-7) 0;
+}
+.rule-hair {
+	border: 0;
+	border-top: 0.5px solid var(--rule);
+}
+
+::selection {
+	background: var(--accent);
+	color: var(--accent-ink);
+}
+input,
+textarea {
+	color: var(--ink);
+}
+input::placeholder,
+textarea::placeholder {
+	color: var(--ink-4);
+}
+
+/* =====================================================================
+   Chipped-stone edges via SVG filters (oc-chip-a/b/c, -strong, -fine).
+   Filters defined in SvgFilters component. Rotate via :nth-child.
+   ===================================================================== */
+
+.surface {
+	position: relative;
+	background: transparent;
+	border: 0;
+}
+.surface::before {
+	content: "";
+	position: absolute;
+	inset: 3px;
+	pointer-events: none;
+	border: 1.25px solid var(--rule);
+	border-radius: 0;
+	filter: url(#oc-chip-a);
+}
+.surface:nth-child(3n + 2)::before {
+	filter: url(#oc-chip-b);
+}
+.surface:nth-child(3n + 3)::before {
+	filter: url(#oc-chip-c);
+}
+[data-theme="dark"] .surface::before {
+	border-color: color-mix(in oklab, var(--ink) 28%, transparent);
+}
+
+.hewn {
+	position: relative;
+	background: transparent;
+	border: 0;
+}
+.hewn::before {
+	content: "";
+	position: absolute;
+	inset: 3px;
+	pointer-events: none;
+	border: 1.75px solid var(--ink);
+	filter: url(#oc-chip-strong);
+}
+.hewn::after {
+	content: "";
+	position: absolute;
+	inset: 7px;
+	pointer-events: none;
+	border: 0.75px solid color-mix(in oklab, var(--ink) 22%, transparent);
+	filter: url(#oc-chip-a);
+}
+[data-theme="dark"] .hewn::before {
+	border-color: color-mix(in oklab, var(--accent) 55%, var(--ink) 45%);
+	box-shadow: 0 0 14px color-mix(in oklab, var(--accent) 20%, transparent);
+}
+[data-theme="dark"] .hewn::after {
+	border-color: color-mix(in oklab, var(--ink) 22%, transparent);
+}
+
+/* Primary button — chipped solid in light, chipped outline in dark. */
+.btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 20px;
+	font-family: var(--font-sans);
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0;
+	color: var(--paper);
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 0;
+	border: 0;
+	background: transparent;
+	isolation: isolate;
+	transition:
+		color 160ms var(--ease-out),
+		transform 80ms var(--ease-out);
+}
+.btn::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: var(--ink);
+	filter: url(#oc-chip-b);
+	transition: background 160ms var(--ease-out);
+}
+.btn:hover {
+	color: var(--accent-ink);
+}
+.btn:hover::before {
+	background: var(--accent);
+}
+.btn:active {
+	transform: translateY(0.5px);
+}
+
+[data-theme="dark"] .btn {
+	color: var(--ink);
+}
+[data-theme="dark"] .btn::before {
+	background: transparent;
+	border: 1.5px solid color-mix(in oklab, var(--ink) 45%, transparent);
+	filter: url(#oc-chip-b);
+}
+[data-theme="dark"] .btn:hover {
+	color: var(--accent-ink);
+}
+[data-theme="dark"] .btn:hover::before {
+	background: var(--accent);
+	border-color: var(--accent);
+	box-shadow: 0 0 20px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+.btn--ghost {
+	color: var(--ink);
+}
+.btn--ghost::before {
+	background: transparent;
+	border: 1.5px solid var(--ink);
+}
+[data-theme="dark"] .btn--ghost {
+	color: var(--ink);
+}
+[data-theme="dark"] .btn--ghost::before {
+	background: transparent;
+	border: 1.5px solid color-mix(in oklab, var(--ink) 50%, transparent);
+}
+
+/* Chip — tiny mono tag with chipped edge. */
+.chip {
+	position: relative;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	padding: 3px 8px 4px;
+	border-radius: 0;
+	color: var(--ink-3);
+	background: transparent;
+	border: 0;
+	display: inline-block;
+}
+.chip::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border: 1px solid var(--rule);
+	filter: url(#oc-chip-fine);
+}
+.chip:nth-child(2n)::before {
+	filter: url(#oc-chip-a);
+}
+.chip:nth-child(3n)::before {
+	filter: url(#oc-chip-c);
+}
+[data-theme="dark"] .chip::before {
+	border-color: color-mix(in oklab, var(--ink) 30%, transparent);
+}
+
+.rule-themed {
+	height: 1px;
+	border: 0;
+	margin: 0;
+	background: var(--rule);
+}
+[data-theme="dark"] .rule-themed {
+	background: color-mix(in oklab, var(--accent) 30%, var(--rule) 70%);
+}
+
+.glow-accent {
+	box-shadow: 0 0 12px color-mix(in oklab, var(--accent) 60%, transparent);
+}
+[data-theme="dark"] .glow-accent {
+	box-shadow:
+		0 0 14px color-mix(in oklab, var(--accent) 75%, transparent),
+		0 0 28px color-mix(in oklab, var(--accent) 40%, transparent);
+}
+
+.field {
+	width: 100%;
+	padding: 10px 0;
+	background: transparent;
+	border: none;
+	border-bottom: 1.25px solid var(--rule);
+	outline: none;
+	font-family: var(--font-sans);
+	font-size: 17px;
+	color: var(--ink);
+	transition: border-color 160ms var(--ease-out);
+}
+.field:focus {
+	border-bottom-color: var(--ink);
+}
+[data-theme="dark"] .field:focus {
+	border-bottom-color: var(--accent);
+}
+
+/* Section-header hairline with accent tick (glows in dark). */
+.section-tick {
+	position: relative;
+	padding-top: 20px;
+}
+.section-tick::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 1px;
+	background: var(--ink);
+}
+.section-tick::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: -2px;
+	width: 40px;
+	height: 3px;
+	background: var(--accent);
+	filter: url(#oc-chip-b);
+}
+[data-theme="dark"] .section-tick::after {
+	box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 70%, transparent);
 }
