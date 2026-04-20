@@ -53,11 +53,17 @@ function yearFromDate(iso: string): string {
  * landing page, first figure as fallback).
  */
 async function buildPublicationRows(): Promise<PublicationRow[]> {
+	// Only query Semantic Scholar when we have an explicit author ID or a
+	// non-default display name. Otherwise `person.name` falls back to the
+	// literal placeholder "Your Name" and the search resolves to a demo
+	// author (74317041) whose papers are OSF tutorial junk.
+	const explicitName =
+		siteConfig.person.name && siteConfig.person.name !== 'Your Name'
+			? siteConfig.person.name
+			: '';
+	const scholarQuery = siteConfig.social.semanticScholar || explicitName;
 	const [semantic, notion] = await Promise.all([
-		fetchSemanticScholarPapers(
-			siteConfig.social.semanticScholar || siteConfig.person.name,
-			30
-		),
+		scholarQuery ? fetchSemanticScholarPapers(scholarQuery, 30) : Promise.resolve([]),
 		fetchPublications(),
 	]);
 
