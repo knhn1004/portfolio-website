@@ -655,3 +655,43 @@ textarea::placeholder {
 [data-theme="dark"] .section-tick::after {
 	box-shadow: 0 0 10px color-mix(in oklab, var(--accent) 70%, transparent);
 }
+
+/* -------------------------------------------------------------------------
+   Code blocks — shiki output (light: github-light, dark: github-dark)
+   Shiki writes --shiki-light / --shiki-dark CSS vars on every span; we pick
+   which to read based on [data-theme].
+   ------------------------------------------------------------------------- */
+.code-block .shiki {
+	margin: 0;
+	padding: 16px 20px;
+	border: 1px solid var(--rule-soft);
+	border-radius: 4px;
+	font-family: var(--font-mono);
+	font-size: 13px;
+	line-height: 1.55;
+	overflow-x: auto;
+	background: var(--shiki-light-bg);
+	color: var(--shiki-light);
+}
+.code-block > figcaption + .shiki {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.code-block .shiki code {
+	background: transparent;
+	padding: 0;
+	border: 0;
+	font-size: inherit;
+}
+.code-block .shiki span {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+}
+[data-theme="dark"] .code-block .shiki {
+	background: var(--shiki-dark-bg);
+	color: var(--shiki-dark);
+}
+[data-theme="dark"] .code-block .shiki span {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
+}

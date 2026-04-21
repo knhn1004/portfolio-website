@@ -3,6 +3,9 @@
 // rather than thrown so a new block type in Notion never takes a page down.
 
 import type { CSSProperties, ReactNode } from 'react';
+import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
+import { codeToHast, type BundledLanguage } from 'shiki';
+import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import type { INotionBlock } from '@/lib/db/notion';
 
 type RichText = {
@@ -171,36 +174,61 @@ function NumberedList({ items }: { items: INotionBlock[] }) {
 	);
 }
 
-function Code({ block }: { block: INotionBlock }) {
+// Notion's code block `language` field uses human names ("javascript", "plain text").
+// Map the ones that don't match a shiki bundled id; the rest pass through.
+const NOTION_TO_SHIKI_LANG: Record<string, BundledLanguage | 'text'> = {
+	'plain text': 'text',
+	plaintext: 'text',
+	'': 'text',
+	'c++': 'cpp',
+	'c#': 'csharp',
+	'f#': 'fsharp',
+	'objective-c': 'objc',
+	shell: 'bash',
+	docker: 'dockerfile',
+};
+
+async function highlight(code: string, rawLang: string): Promise<ReactNode> {
+	const lang = NOTION_TO_SHIKI_LANG[rawLang.toLowerCase()] ?? rawLang.toLowerCase();
+	const opts = {
+		themes: { light: 'github-light', dark: 'github-dark' },
+		defaultColor: false,
+	} as const;
+	let hast;
+	try {
+		hast = await codeToHast(code, { ...opts, lang: lang as BundledLanguage });
+	} catch {
+		hast = await codeToHast(code, { ...opts, lang: 'text' });
+	}
+	return toJsxRuntime(hast, { Fragment, jsx, jsxs });
+}
+
+async function Code({ block }: { block: INotionBlock }) {
 	const text = (block.data.rich_text as RichText[])
 		.map(r => r.plain_text)
 		.join('');
 	const lang = block.data.language || '';
+	const highlighted = await highlight(text, lang);
 	return (
-		<pre
-			style={{
-				margin: '0 0 1.4em',
-				padding: '16px 20px',
-				background: 'var(--paper-2)',
-				border: '1px solid var(--rule-soft)',
-				borderRadius: 4,
-				fontFamily: 'var(--font-mono)',
-				fontSize: 13,
-				lineHeight: 1.5,
-				color: 'var(--ink-2)',
-				overflowX: 'auto',
-			}}
-		>
+		<figure className="code-block" style={{ margin: '0 0 1.4em' }}>
 			{lang && (
-				<div
+				<figcaption
 					className="mono-xs"
-					style={{ marginBottom: 8, letterSpacing: '0.08em' }}
+					style={{
+						padding: '8px 16px',
+						borderTopLeftRadius: 4,
+						borderTopRightRadius: 4,
+						border: '1px solid var(--rule-soft)',
+						borderBottom: 0,
+						letterSpacing: '0.08em',
+						color: 'var(--ink-3)',
+					}}
 				>
 					{lang.toUpperCase()}
-				</div>
+				</figcaption>
 			)}
-			<code>{text}</code>
-		</pre>
+			{highlighted}
+		</figure>
 	);
 }
 
